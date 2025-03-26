@@ -1,7 +1,7 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     text-align: center;
-    background: linear-gradient(270deg, #2a6f97, #468faf, #89c2d9, #bbe4e9, #f7f7d4); /* Lighter shades of blue and teal */
+    background: linear-gradient(270deg, #2a6f97, #468faf, #89c2d9, #bbe4e9, #f7f7d4);
     background-size: 500% 500%;
     animation: gradientAnimation 12s ease infinite;
     margin: 0;
@@ -15,9 +15,9 @@ body {
 }
 
 .container {
-    max-width: 900px; /* Container width */
+    max-width: 900px;
     margin: auto;
-    padding: 5px 30px; /* Set vertical padding to 20px and horizontal padding to 30px */
+    padding: 5px 30px;
     background: rgb(18, 105, 139);
     border-radius: 12px;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
@@ -30,103 +30,101 @@ body {
 }
 
 #greeting {
-    background: #1e7eab; /* Light blue background */
+    background: #1e7eab;
     border-radius: 8px;
-    padding: 10px 15px; /* Reduced padding */
+    padding: 10px 15px;
     margin-top: 10px;
     color: white;
-    font-size: 20px; /* Slightly smaller text */
+    font-size: 20px;
     font-weight: bold;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-    line-height: 1.2; /* Reduce line spacing */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    line-height: 1.2;
 }
-
 
 h1 {
     color: white;
     margin-bottom: 20px;
-    font-size: 28px; /* Increase title size */
+    font-size: 28px;
 }
 
 #weather {
-    background: #ffe0b2; /* Light background */
+    background: #ffe0b2;
     border-radius: 8px;
     border-left: 6px solid #ff9800;
     text-align: left;
-    padding: 20px; /* Add more padding for spaciousness */
+    padding: 20px;
 }
 
 #weather h2 {
-    font-size: 26px; /* Slightly larger heading */
+    font-size: 26px;
     color: #eeeeee;
-    margin: 0; /* Remove margin for a tighter layout */
+    margin: 0;
 }
 
 #location {
-    font-size: 24px; /* Increase font size for visibility */
-    font-weight: 600; /* Use a bolder font weight */
-    color: beige; /* Change color to a darker shade for better contrast */
-    margin: 10px 0; /* Add some margin for spacing */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Add a subtle text shadow */
+    font-size: 24px;
+    font-weight: 600;
+    color: beige;
+    margin: 10px 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .forecast-container {
-    display: flex; /* Use flexbox to arrange items in a row */
-    justify-content: space-between; /* Distribute space between items */
-    margin-top: 15px; /* Add space above the forecast cards */
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
 }
 
 .forecast-card {
-    display: flex; /* Use Flexbox for alignment */
-    flex-direction: column; /* Stack items vertically */
-    justify-content: center; /* Center items vertically */
-    align-items: center; /* Center items horizontally */
-    flex: 0 1 calc(33.33% - 10px); /* Set a base width for each card, adjust spacing */
-    margin: 5px; /* Adjust horizontal spacing between cards */
-    padding: 15px; /* Add padding inside each card */
-    background: #468694; /* Light neutral blue background */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Add transition effects */
-    height: auto; /* Allow height to adjust automatically */
-    min-height: 150px; /* Set a minimum height for consistent sizing */
-    color: #eeeeee; /* Light color for text */
-    text-align: center; /* Center text */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 0 1 calc(33.33% - 10px);
+    margin: 5px;
+    padding: 15px;
+    background: #468694;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    height: auto;
+    min-height: 150px;
+    color: #eeeeee;
+    text-align: center;
 }
 
 .forecast-card:hover {
-    transform: translateY(-3px); /* Lift effect on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .today-card {
-    background: #1e7eab; /* Lighter blue for today's card */
-    border: 2px solid rgb(2, 179, 179); /* Accent border for emphasis */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow for depth */
-    transition: transform 0.3s ease; /* Smooth scaling effect */
+    background: #1e7eab;
+    border: 2px solid rgb(2, 179, 179);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
 }
 
 .today-card:hover {
-    transform: scale(1.05); /* Scale up on hover for interaction */
+    transform: scale(1.05);
 }
 
-/* Optional: Add media query for smaller screens */
 @media (max-width: 600px) {
     .forecast-card {
-        flex: 0 1 calc(50% - 10px); /* Adjust card width for smaller screens */
-        min-height: 120px; /* Reduce min-height for smaller screens */
+        flex: 0 1 calc(50% - 10px);
+        min-height: 120px;
     }
 }
 
 .forecast-card p {
-    margin: 5px 0; /* Add margin for spacing between text elements */
+    margin: 5px 0;
     line-height: 1.2;
 }
 
 .forecast-card p:first-child {
-    font-size: 18px; /* Larger font for date */
-    font-weight: bold; /* Bold for emphasis */
+    font-size: 18px;
+    font-weight: bold;
     color: #eeeeee 
 }
 
@@ -135,50 +133,49 @@ h1 {
 }
 
 .forecast-card p:nth-child(2) {
-    font-size: 40px; /* Larger font for temperature */
-    color: beige; /* Temperature color */
-    font-weight: 700; /* Bold for emphasis */
-}
-
-.forecast-card p:nth-child(3) {
-    font-size: 24px; /* Smaller font for description */
-    color: beige; /* Light description color */
+    font-size: 40px;
+    color: beige;
     font-weight: 700;
 }
 
-.forecast-card p:nth-child(4) { /* Styling for Low temperature */
-    font-size: 18px; /* Smaller font for low temperature */
-    font-weight: 400; /* Normal weight */
-    color: #b8f0f5; /* Optional: lighter color for low temp */
+.forecast-card p:nth-child(3) {
+    font-size: 24px;
+    color: beige;
+    font-weight: 700;
 }
 
-.forecast-card p:nth-child(5) { /* Styling for Description */
-    font-size: 16px; /* Smaller font for description */
-    font-weight: 400; /* Light weight for description */
-    color: #eeeeee; /* Lighter color for description */
-    line-height: 1.4; /* Increased line height for better readability */
+.forecast-card p:nth-child(4) {
+    font-size: 18px;
+    font-weight: 400;
+    color: #b8f0f5;
 }
 
-/* Existing styles for weather info */
+.forecast-card p:nth-child(5) {
+    font-size: 16px;
+    font-weight: 400;
+    color: #eeeeee;
+    line-height: 1.4;
+}
+
 #weather-info {
-    font-size: 22px; /* Increase font size for visibility */
-    font-weight: 500; /* Use medium weight */
+    font-size: 22px;
+    font-weight: 500;
     color: #eeeeee;
     line-height: 1.5;
 }
 
 #quote {
-    background: #dcedc8; /* Lighter green */
+    background: #dcedc8;
     border-radius: 8px;
     border-left: 6px solid #4caf50;
     text-align: left;
-    padding: 20px; /* Add more padding for spaciousness */
-    margin-top: 20px; /* Add top margin for separation */
+    padding: 20px;
+    margin-top: 20px;
 }
 
 #quote-text {
-    font-size: 24px; /* Increase font size for quotes */
-    font-weight: 700; /* Use bold weight */
+    font-size: 24px;
+    font-weight: 700;
     color: beige;
     margin: 10px 0;
     line-height: 1.5;
@@ -186,9 +183,9 @@ h1 {
 }
 
 #quote-author {
-    font-size: 20px; /* Slightly larger author font size */
+    font-size: 20px;
     color: #eeeeee;
-    margin-top: 15px; /* Increased margin for spacing */
+    margin-top: 15px;
     text-align: right;
 }
 
@@ -214,71 +211,71 @@ button {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-top: 10px; /* Added margin for spacing */
+    margin-top: 10px;
     margin-bottom: 5px;
 }
 
 button:hover {
     background-color: #6374e7;
-    transform: scale(1.05); /* Scale effect on hover */
+    transform: scale(1.05);
 }
 
 button:focus {
-    outline: none; /* Remove focus outline */
+    outline: none;
 }
 
 @media (max-width: 600px) {
     .container {
-        padding: 20px; /* Adjust padding for smaller screens */
+        padding: 20px;
     }
     
     h1 {
-        font-size: 24px; /* Adjust title size for smaller screens */
+        font-size: 24px;
     }
 
     #weather h2, #quote h2 {
-        font-size: 22px; /* Adjust heading sizes */
+        font-size: 22px;
     }
 
     #weather-info, #quote-text {
-        font-size: 18px; /* Adjust font size for better readability */
+        font-size: 18px;
     }
 
     button {
-        font-size: 16px; /* Adjust button size for smaller screens */
+        font-size: 16px;
     }
 }
 
 #current-time,
 #weather,
 #quote {
-    background: #08415c; /* Light teal background */
+    background: #08415c;
     border-radius: 8px;
-    border-left: 6px solid white; /* Teal accent */
-    text-align: center; /* Center text */
+    border-left: 6px solid white;
+    text-align: center;
     padding: 20px;
-    margin: 20px 0; /* Consistent vertical spacing between components */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #time {
-    font-size: 36px; /* Increase font size for visibility */
-    font-weight: bold; /* Emphasize the time */
-    color: beige; /* Darker teal color */
-    margin: 10px 0; /* Add margin for spacing */
+    font-size: 36px;
+    font-weight: bold;
+    color: beige;
+    margin: 10px 0;
 }
 
 #timezone {
-    font-size: 18px; /* Slightly smaller font size for timezone */
-    color: #eeeeee; /* Lighter color for the timezone text */
+    font-size: 18px;
+    color: #eeeeee;
 }
 
 #weather {
-    background: #08415c; /* Light background for weather */
+    background: #08415c;
 }
 
 #quote {
-    background: #08415c; /* Lighter green for quotes */
+    background: #08415c;
 }
 
 #quote-author {
@@ -286,7 +283,6 @@ button:focus {
     color: white;
     font-style: italic;
     text-align: center;
-    display: block; /* Ensures it takes full width */
+    display: block;
     margin-top: 10px;
 }
-

@@ -81,22 +81,27 @@ function fetchWeather(lat, lon) {
                 // Create a new forecast card
                 const card = document.createElement("div");
                 card.classList.add("forecast-card");
-    
+
                 // Add a special class for today's card
                 if (isToday) {
                     card.classList.add("today-card");
+                    card.innerHTML = `
+                        <p>Today</p> <!-- Changed from formattedDate to "Today" -->
+                        <p>${weatherEmoji}  ${temp}°F</p>
+                        <p>${description}</p>
+                    `;
+                } else {
+    card.innerHTML = `
+        <p>${formattedDate}</p>
+        <p>${weatherEmoji}  ${temp}°F</p>
+        <p>${description}</p>
+    `;
                 }
 
-                card.innerHTML = `
-                    <p>${formattedDate} ${isToday ? "(Today)" : ""}</p>
-                    <p>${weatherEmoji}  ${temp}°F</p>
-                    <p>${description}</p>
-                `;
 
                 // Append the card to the forecast wrapper
                 forecastWrapper.appendChild(card);
             }
-
 
             // Append the forecast wrapper to the forecast container
             forecastContainer.appendChild(forecastWrapper);
@@ -109,7 +114,7 @@ function fetchWeather(lat, lon) {
 
 async function getQuote() {
     const quoteText = document.getElementById("quote-text");
-    quoteText.innerHTML = '<span class="loader">...</span>';
+    quoteText.innerHTML = '<span class="loader">Loading...</span>';
     
     try {
         // Fetch a random quote from API Ninjas

@@ -1,9 +1,9 @@
 body {
-    font-family: 'Montserrat', sans-serif; /* Modern font */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     text-align: center;
-    background: linear-gradient(270deg, #ffb3ba, #ffdfba, #ffffba, #baffc9, #bae1ff); /* Pastel colors */
-    background-size: 400% 400%;
-    animation: gradientAnimation 15s ease infinite; /* Animation for the gradient */
+    background: linear-gradient(270deg, #2a6f97, #468faf, #89c2d9, #bbe4e9, #f7f7d4); /* Lighter shades of blue and teal */
+    background-size: 500% 500%;
+    animation: gradientAnimation 12s ease infinite;
     margin: 0;
     padding: 20px;
 }
@@ -18,7 +18,7 @@ body {
     max-width: 900px; /* Container width */
     margin: auto;
     padding: 30px;
-    background: #ffffff;
+    background: rgb(18, 105, 139);
     border-radius: 12px;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -30,7 +30,7 @@ body {
 }
 
 h1 {
-    color: #333;
+    color: white;
     margin-bottom: 20px;
     font-size: 28px; /* Increase title size */
 }
@@ -45,14 +45,14 @@ h1 {
 
 #weather h2 {
     font-size: 26px; /* Slightly larger heading */
-    color: #333;
+    color: #eeeeee;
     margin: 0; /* Remove margin for a tighter layout */
 }
 
 #location {
     font-size: 24px; /* Increase font size for visibility */
     font-weight: 600; /* Use a bolder font weight */
-    color: #1a237e; /* Change color to a darker shade for better contrast */
+    color: beige; /* Change color to a darker shade for better contrast */
     margin: 10px 0; /* Add some margin for spacing */
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Add a subtle text shadow */
 }
@@ -71,7 +71,7 @@ h1 {
     flex: 0 1 500px; /* Set a base width for each card */
     margin: 0 5px; /* Reduce horizontal spacing between cards */
     padding: 15px; /* Add padding inside each card */
-    background: #e0f7fa; /* Light neutral blue background */
+    background: #5296a5; /* Light neutral blue background */
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     transition: transform 0.2s ease, box-shadow 0.2s ease; /* Add transition effects */
@@ -84,7 +84,7 @@ h1 {
 }
 
 .today-card {
-    background: #b3e5fc; /* Lighter blue for today's card */
+    background: #2786b2; /* Lighter blue for today's card */
     border: 2px solid #2196f3; /* Accent border for emphasis */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow for depth */
     transition: transform 0.3s ease; /* Smooth scaling effect */
@@ -101,29 +101,29 @@ h1 {
 .forecast-card p:first-child {
     font-size: 16px; /* Larger font for date */
     font-weight: bold; /* Bold for emphasis */
+    color: #eeeeee 
 }
 
 .today-card p:first-child{
     font-size: 20px;
-
 }
 
 .forecast-card p:nth-child(2) {
     font-size: 24px; /* Larger font for temperature */
-    color: navy; /* Temperature color */
+    color: beige; /* Temperature color */
     font-weight: 700; /* Bold for emphasis */
 }
 
 .forecast-card p:nth-child(3) {
     font-size: 16px; /* Smaller font for description */
-    color: #555; /* Light description color */
+    color: white; /* Light description color */
 }
 
 /* Existing styles for weather info */
 #weather-info {
     font-size: 22px; /* Increase font size for visibility */
     font-weight: 500; /* Use medium weight */
-    color: #e65100;
+    color: #eeeeee;
     line-height: 1.5;
 }
 
@@ -137,9 +137,9 @@ h1 {
 }
 
 #quote-text {
-    font-size: 28px; /* Increase font size for quotes */
+    font-size: 24px; /* Increase font size for quotes */
     font-weight: 700; /* Use bold weight */
-    color: #2e7d32;
+    color: beige;
     margin: 10px 0;
     line-height: 1.5;
     font-style: italic;
@@ -147,13 +147,13 @@ h1 {
 
 #quote-author {
     font-size: 20px; /* Slightly larger author font size */
-    color: #555;
+    color: #eeeeee;
     margin-top: 5px;
     text-align: right;
 }
 
 h2 {
-    color: #555;
+    color: #eeeeee;
 }
 
 p {
@@ -162,7 +162,7 @@ p {
 }
 
 button {
-    background-color: #4caf50;
+    background-color: #374bce;
     color: white;
     border: none;
     border-radius: 5px;
@@ -173,7 +173,7 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #286ba1;
     transform: scale(1.05); /* Scale effect on hover */
 }
 
@@ -206,9 +206,9 @@ button:focus {
 #current-time,
 #weather,
 #quote {
-    background: #cfe9e8; /* Light teal background */
+    background: #08415c; /* Light teal background */
     border-radius: 8px;
-    border-left: 6px solid #009688; /* Teal accent */
+    border-left: 6px solid white; /* Teal accent */
     text-align: center; /* Center text */
     padding: 20px;
     margin: 20px 0; /* Consistent vertical spacing between components */
@@ -218,19 +218,29 @@ button:focus {
 #time {
     font-size: 36px; /* Increase font size for visibility */
     font-weight: bold; /* Emphasize the time */
-    color: #004d40; /* Darker teal color */
+    color: beige; /* Darker teal color */
     margin: 10px 0; /* Add margin for spacing */
 }
 
 #timezone {
     font-size: 18px; /* Slightly smaller font size for timezone */
-    color: #555; /* Lighter color for the timezone text */
+    color: #eeeeee; /* Lighter color for the timezone text */
 }
 
 #weather {
-    background: #ffe0b2; /* Light background for weather */
+    background: #08415c; /* Light background for weather */
 }
 
 #quote {
-    background: #dcedc8; /* Lighter green for quotes */
+    background: #08415c; /* Lighter green for quotes */
 }
+
+#quote-author {
+    font-size: 16px;
+    color: white;
+    font-style: italic;
+    text-align: center;
+    display: block; /* Ensures it takes full width */
+    margin-top: 10px;
+}
+

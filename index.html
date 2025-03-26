@@ -9,6 +9,9 @@
 <body>
     <div class="container">
         <h1>Daily Dashboard</h1> 
+        <div id="greeting">
+            <h2 id="greeting-message">Loading...</h2>
+        </div>
         <div id="current-time">
             <h2>Current Time</h2>
             <p id="time">Loading...</p>
@@ -20,7 +23,7 @@
             <p id="weather-info">Loading...</p>
         </div>
         <div id="quote">
-            <h2>Daily Quote</h2>
+            <h2 class="quote-heading">Daily Quote</h2>
             <p id="quote-text">Loading...</p>
             <p id="quote-author"></p>
             <button onclick="getQuote()">Get New Quote</button>

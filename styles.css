@@ -17,7 +17,7 @@ body {
 .container {
     max-width: 900px; /* Container width */
     margin: auto;
-    padding: 30px;
+    padding: 5px 30px; /* Set vertical padding to 20px and horizontal padding to 30px */
     background: rgb(18, 105, 139);
     border-radius: 12px;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
@@ -28,6 +28,20 @@ body {
     transform: translateY(-5px);
     box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.3);
 }
+
+#greeting {
+    background: #1e7eab; /* Light blue background */
+    border-radius: 8px;
+    padding: 10px 15px; /* Reduced padding */
+    margin-top: 10px;
+    color: white;
+    font-size: 20px; /* Slightly smaller text */
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    line-height: 1.2; /* Reduce line spacing */
+}
+
 
 h1 {
     color: white;
@@ -148,12 +162,16 @@ h1 {
 #quote-author {
     font-size: 20px; /* Slightly larger author font size */
     color: #eeeeee;
-    margin-top: 5px;
+    margin-top: 15px; /* Increased margin for spacing */
     text-align: right;
 }
 
 h2 {
     color: #eeeeee;
+}
+
+.quote-heading {
+    margin-top: 5px;
 }
 
 p {
@@ -170,6 +188,8 @@ button {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px; /* Added margin for spacing */
+    margin-bottom: 5px;
 }
 
 button:hover {

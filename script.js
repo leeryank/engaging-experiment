@@ -145,6 +145,21 @@ function updateTime() {
 
     document.getElementById("time").innerText = formattedTime;
     document.getElementById("timezone").innerText = `Timezone: ${formattedTimezone}`;
+
+    // Determine greeting based on time
+    const hours = now.getHours();
+    let greetingText = "";
+
+    if (hours < 12) {
+        greetingText = "Good Morning! ☀️";
+    } else if (hours < 18) {
+        greetingText = "Good Afternoon! 🌤️";
+    } else {
+        greetingText = "Good Evening! 🌙";
+    }
+
+    // Update greeting message
+    document.getElementById("greeting-message").innerText = greetingText;
 }
 
 // Call updateTime every second
@@ -152,6 +167,7 @@ setInterval(updateTime, 1000);
 
 // Call the function to set initial time
 updateTime();
+
 
 
 

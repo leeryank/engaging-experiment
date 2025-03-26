@@ -64,14 +64,18 @@ h1 {
 }
 
 .forecast-card {
+    display: flex; /* Use Flexbox for alignment */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center items vertically */
+    align-items: center; /* Center items horizontally */
     flex: 0 1 500px; /* Set a base width for each card */
     margin: 0 5px; /* Reduce horizontal spacing between cards */
     padding: 15px; /* Add padding inside each card */
-    background: linear-gradient(to bottom right, #ffffff, #f9f9f9); /* Soft gradient */
+    background: #e0f7fa; /* Light neutral blue background */
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    text-align: center; /* Center the text inside the cards */
     transition: transform 0.2s ease, box-shadow 0.2s ease; /* Add transition effects */
+    height: 150px; /* Set a fixed height for consistent sizing */
 }
 
 .forecast-card:hover {
@@ -79,13 +83,29 @@ h1 {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
 }
 
+.today-card {
+    background: #b3e5fc; /* Lighter blue for today's card */
+    border: 2px solid #2196f3; /* Accent border for emphasis */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow for depth */
+    transition: transform 0.3s ease; /* Smooth scaling effect */
+}
+
+.today-card:hover {
+    transform: scale(1.1); /* Scale up on hover for interaction */
+}
+
 .forecast-card p {
     margin: 5px 0; /* Add margin for spacing between text elements */
 }
 
 .forecast-card p:first-child {
-    font-size: 18px; /* Larger font for date */
+    font-size: 16px; /* Larger font for date */
     font-weight: bold; /* Bold for emphasis */
+}
+
+.today-card p:first-child{
+    font-size: 20px;
+
 }
 
 .forecast-card p:nth-child(2) {
@@ -181,4 +201,36 @@ button:focus {
     button {
         font-size: 16px; /* Adjust button size for smaller screens */
     }
+}
+
+#current-time,
+#weather,
+#quote {
+    background: #cfe9e8; /* Light teal background */
+    border-radius: 8px;
+    border-left: 6px solid #009688; /* Teal accent */
+    text-align: center; /* Center text */
+    padding: 20px;
+    margin: 20px 0; /* Consistent vertical spacing between components */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+}
+
+#time {
+    font-size: 36px; /* Increase font size for visibility */
+    font-weight: bold; /* Emphasize the time */
+    color: #004d40; /* Darker teal color */
+    margin: 10px 0; /* Add margin for spacing */
+}
+
+#timezone {
+    font-size: 18px; /* Slightly smaller font size for timezone */
+    color: #555; /* Lighter color for the timezone text */
+}
+
+#weather {
+    background: #ffe0b2; /* Light background for weather */
+}
+
+#quote {
+    background: #dcedc8; /* Lighter green for quotes */
 }

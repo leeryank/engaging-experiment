@@ -20,6 +20,21 @@ function getWeather() {
     });
 }
 
+// Function to determine weather emoji based on temperature and conditions
+function getWeatherEmoji(temp, description) {
+    if (description.includes("rain")) { // Rainy weather
+        return '🌧️'; // Cloud with rain
+    } else if (temp < 32) { // Below freezing
+        return '❄️'; // Snowflake
+    } else if (temp < 60) { // Cool weather
+        return '☁️'; // Cloud
+    } else if (temp < 75) { // Mild weather
+        return '🌤️'; // Sun behind small cloud
+    } else { // Hot weather
+        return '☀️'; // Sun
+    }
+}
+
 // Define fetchWeather function
 function fetchWeather(lat, lon) {
     const apiKey = "651ba3df0fb896293ae2f4bb4f9f3b26";
@@ -47,7 +62,6 @@ function fetchWeather(lat, lon) {
             forecastWrapper.classList.add("forecast-container"); // Add the flex container class
 
             // Create forecast cards for the next 3 days
-            // Create forecast cards for the next 3 days
             for (let i = 0; i < 3; i++) {
                 const forecast = data.list[i * 8]; // Get the forecast for every 8th entry (every 24 hours)
                 const temp = Math.round(forecast.main.temp);
@@ -55,25 +69,34 @@ function fetchWeather(lat, lon) {
                 const date = new Date(forecast.dt * 1000);
                 const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
                 const formattedDate = date.toLocaleDateString(undefined, options);
-    
+
                 // Determine if the date is today or tomorrow
                 const today = new Date();
                 today.setHours(0, 0, 0, 0); // Set to the start of today
-                const tomorrow = new Date(today);
-                tomorrow.setDate(today.getDate() + 1); // Set to tomorrow
+                const isToday = date.toDateString() === today.toDateString(); // Check if it's today
+
+                // Get the appropriate emoji for the temperature and description
+                const weatherEmoji = getWeatherEmoji(temp, description);
 
                 // Create a new forecast card
                 const card = document.createElement("div");
                 card.classList.add("forecast-card");
+    
+                // Add a special class for today's card
+                if (isToday) {
+                    card.classList.add("today-card");
+                }
+
                 card.innerHTML = `
-                    <p>${formattedDate} ${date.toDateString() === today.toDateString() ? "(Today)" : date.toDateString() === tomorrow.toDateString() ? "(Tomorrow)" : ""}</p>
-                    <p>🌡️ ${temp}°F</p>
+                    <p>${formattedDate} ${isToday ? "(Today)" : ""}</p>
+                    <p>${weatherEmoji}  ${temp}°F</p>
                     <p>${description}</p>
                 `;
 
                 // Append the card to the forecast wrapper
                 forecastWrapper.appendChild(card);
             }
+
 
             // Append the forecast wrapper to the forecast container
             forecastContainer.appendChild(forecastWrapper);
@@ -85,42 +108,58 @@ function fetchWeather(lat, lon) {
 }
 
 // Fetch Random Advice
-let lastAdvice = null;
+let lastQuote = null;
 
-async function getAdvice() {
-    const response = await fetch(`https://api.adviceslip.com/advice?t=${Date.now()}`);
-    const data = await response.json();
-    
-    if (data.slip.advice !== lastAdvice) {
-        lastAdvice = data.slip.advice;
-        // Display advice
-    } else {
-        // If same advice comes, fetch again
-        getAdvice();
-    }
-
+async function getQuote() {
     const quoteText = document.getElementById("quote-text");
     quoteText.innerHTML = '<span class="loader">...</span>';
+    
     try {
-        // Add timestamp to prevent caching
-        const response = await fetch(`https://api.adviceslip.com/advice?t=${Date.now()}`);
+        // Fetch a random quote from ZenQuotes
+        const response = await fetch(`https://api.zenquotes.io/api/random?t=${Date.now()}`);
         
-        if (!response.ok) throw new Error('Failed to fetch advice');
+        if (!response.ok) throw new Error('Failed to fetch quote');
         
         const data = await response.json();
         
-        // Update DOM elements
-        document.getElementById("quote-text").innerText = data.slip.advice;
-        document.getElementById("quote-author").innerText = "— Life Advice";
-        
+        // Check if the same quote was fetched
+        if (data[0].q !== lastQuote) {
+            lastQuote = data[0].q;
+            // Update DOM elements
+            document.getElementById("quote-text").innerText = data[0].q;
+            document.getElementById("quote-author").innerText = `— ${data[0].a}`;
+        } else {
+            // If the same quote comes, fetch again
+            getQuote();
+        }
+
     } catch (error) {
-        document.getElementById("quote-text").innerText = "Could not fetch advice. Here's one: 'Never give up!'";
-        console.error('Advice fetch error:', error);
+        document.getElementById("quote-text").innerText = "Could not fetch quote. Here's one: 'Never give up!'";
+        console.error('Quote fetch error:', error);
     }
 }
 
-// Call the function when page loads
-getAdvice();
+// Example call to getQuote on page load or a button click
+document.addEventListener('DOMContentLoaded', (event) => {
+    getQuote();
+});
+
+// Update the current time and timezone every second
+function updateTime() {
+    const now = new Date();
+    const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+    const formattedTime = now.toLocaleTimeString(undefined, options);
+    const formattedTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone; // Get timezone
+
+    document.getElementById("time").innerText = formattedTime;
+    document.getElementById("timezone").innerText = `Timezone: ${formattedTimezone}`;
+}
+
+// Call updateTime every second
+setInterval(updateTime, 1000);
+
+// Call the function to set initial time
+updateTime();
 
 
 

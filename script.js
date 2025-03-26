@@ -85,19 +85,19 @@ function fetchWeather(lat, lon) {
                 // Add a special class for today's card
                 if (isToday) {
                     card.classList.add("today-card");
+                    // Set inner HTML for today card with explicit "Today" text
                     card.innerHTML = `
-                        <p>Today</p> <!-- Changed from formattedDate to "Today" -->
+                    <p>${formattedDate} (Today)</p>
+                    <p>${weatherEmoji}  ${temp}°F</p>
+                    <p>${description}</p>
+                    `;
+                } else {
+                    card.innerHTML = `
+                        <p>${formattedDate}</p>
                         <p>${weatherEmoji}  ${temp}°F</p>
                         <p>${description}</p>
                     `;
-                } else {
-    card.innerHTML = `
-        <p>${formattedDate}</p>
-        <p>${weatherEmoji}  ${temp}°F</p>
-        <p>${description}</p>
-    `;
                 }
-
 
                 // Append the card to the forecast wrapper
                 forecastWrapper.appendChild(card);

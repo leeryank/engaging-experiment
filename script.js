@@ -65,6 +65,8 @@ function fetchWeather(lat, lon) {
             for (let i = 0; i < 3; i++) {
                 const forecast = data.list[i * 8]; // Get the forecast for every 8th entry (every 24 hours)
                 const temp = Math.round(forecast.main.temp);
+                const highTemp = Math.round(forecast.main.temp_max); // Get high temperature
+                const lowTemp = Math.round(forecast.main.temp_min); // Get low temperature
                 const description = forecast.weather[0].description;
                 const date = new Date(forecast.dt * 1000);
                 const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -79,6 +81,7 @@ function fetchWeather(lat, lon) {
                 const weatherEmoji = getWeatherEmoji(temp, description);
 
                 // Create a new forecast card
+                // Create a new forecast card
                 const card = document.createElement("div");
                 card.classList.add("forecast-card");
 
@@ -88,13 +91,17 @@ function fetchWeather(lat, lon) {
                     // Set inner HTML for today card with explicit "Today" text
                     card.innerHTML = `
                     <p>${formattedDate} (Today)</p>
-                    <p>${weatherEmoji}  ${temp}°F</p>
+                    <p>${weatherEmoji}</p>
+                    <p>High: ${highTemp}°F</p>
+                    <p>Low: ${lowTemp}°F</p>
                     <p>${description}</p>
                     `;
                 } else {
                     card.innerHTML = `
                         <p>${formattedDate}</p>
-                        <p>${weatherEmoji}  ${temp}°F</p>
+                        <p>${weatherEmoji}</p>
+                        <p>High: ${highTemp}°F</p>
+                        <p>Low: ${lowTemp}°F</p>
                         <p>${description}</p>
                     `;
                 }

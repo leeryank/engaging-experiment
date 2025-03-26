@@ -82,14 +82,17 @@ h1 {
     flex-direction: column; /* Stack items vertically */
     justify-content: center; /* Center items vertically */
     align-items: center; /* Center items horizontally */
-    flex: 0 1 500px; /* Set a base width for each card */
-    margin: 0 5px; /* Reduce horizontal spacing between cards */
+    flex: 0 1 calc(33.33% - 10px); /* Set a base width for each card, adjust spacing */
+    margin: 5px; /* Adjust horizontal spacing between cards */
     padding: 15px; /* Add padding inside each card */
     background: #468694; /* Light neutral blue background */
     border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
     transition: transform 0.2s ease, box-shadow 0.2s ease; /* Add transition effects */
-    height: 150px; /* Set a fixed height for consistent sizing */
+    height: auto; /* Allow height to adjust automatically */
+    min-height: 150px; /* Set a minimum height for consistent sizing */
+    color: #eeeeee; /* Light color for text */
+    text-align: center; /* Center text */
 }
 
 .forecast-card:hover {
@@ -105,32 +108,55 @@ h1 {
 }
 
 .today-card:hover {
-    transform: scale(1.1); /* Scale up on hover for interaction */
+    transform: scale(1.05); /* Scale up on hover for interaction */
+}
+
+/* Optional: Add media query for smaller screens */
+@media (max-width: 600px) {
+    .forecast-card {
+        flex: 0 1 calc(50% - 10px); /* Adjust card width for smaller screens */
+        min-height: 120px; /* Reduce min-height for smaller screens */
+    }
 }
 
 .forecast-card p {
     margin: 5px 0; /* Add margin for spacing between text elements */
+    line-height: 1.2;
 }
 
 .forecast-card p:first-child {
-    font-size: 16px; /* Larger font for date */
+    font-size: 18px; /* Larger font for date */
     font-weight: bold; /* Bold for emphasis */
     color: #eeeeee 
 }
 
 .today-card p:first-child{
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .forecast-card p:nth-child(2) {
-    font-size: 24px; /* Larger font for temperature */
+    font-size: 40px; /* Larger font for temperature */
     color: beige; /* Temperature color */
     font-weight: 700; /* Bold for emphasis */
 }
 
 .forecast-card p:nth-child(3) {
+    font-size: 24px; /* Smaller font for description */
+    color: beige; /* Light description color */
+    font-weight: 700;
+}
+
+.forecast-card p:nth-child(4) { /* Styling for Low temperature */
+    font-size: 18px; /* Smaller font for low temperature */
+    font-weight: 400; /* Normal weight */
+    color: #b8f0f5; /* Optional: lighter color for low temp */
+}
+
+.forecast-card p:nth-child(5) { /* Styling for Description */
     font-size: 16px; /* Smaller font for description */
-    color: white; /* Light description color */
+    font-weight: 400; /* Light weight for description */
+    color: #eeeeee; /* Lighter color for description */
+    line-height: 1.4; /* Increased line height for better readability */
 }
 
 /* Existing styles for weather info */

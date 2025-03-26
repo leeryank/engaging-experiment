@@ -71,7 +71,7 @@ h1 {
     flex: 0 1 500px; /* Set a base width for each card */
     margin: 0 5px; /* Reduce horizontal spacing between cards */
     padding: 15px; /* Add padding inside each card */
-    background: #5296a5; /* Light neutral blue background */
+    background: #468694; /* Light neutral blue background */
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     transition: transform 0.2s ease, box-shadow 0.2s ease; /* Add transition effects */
@@ -84,8 +84,8 @@ h1 {
 }
 
 .today-card {
-    background: #2786b2; /* Lighter blue for today's card */
-    border: 2px solid #2196f3; /* Accent border for emphasis */
+    background: #1e7eab; /* Lighter blue for today's card */
+    border: 2px solid rgb(2, 179, 179); /* Accent border for emphasis */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow for depth */
     transition: transform 0.3s ease; /* Smooth scaling effect */
 }
@@ -105,7 +105,7 @@ h1 {
 }
 
 .today-card p:first-child{
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .forecast-card p:nth-child(2) {
@@ -173,7 +173,7 @@ button {
 }
 
 button:hover {
-    background-color: #286ba1;
+    background-color: #6374e7;
     transform: scale(1.05); /* Scale effect on hover */
 }
 

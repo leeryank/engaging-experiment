@@ -84,10 +84,6 @@ function fetchWeather(lat, lon) {
         });
 }
 
-
-
-
-
 // Fetch Random Advice
 let lastAdvice = null;
 

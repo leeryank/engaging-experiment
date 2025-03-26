@@ -107,42 +107,29 @@ function fetchWeather(lat, lon) {
         });
 }
 
-// Fetch Random Advice
-let lastQuote = null;
-
 async function getQuote() {
     const quoteText = document.getElementById("quote-text");
     quoteText.innerHTML = '<span class="loader">...</span>';
     
     try {
-        // Fetch a random quote from ZenQuotes
-        const response = await fetch(`https://api.zenquotes.io/api/random?t=${Date.now()}`);
-        
+        // Fetch a random quote from API Ninjas
+        const response = await fetch(`https://api.api-ninjas.com/v1/quotes`, {
+            headers: { 'X-Api-Key': 'ICPb+Q7ZFU0UytHsdwl6xg==1ywo4ejo5uFyiBhf' }
+        });
+
         if (!response.ok) throw new Error('Failed to fetch quote');
-        
+
         const data = await response.json();
-        
-        // Check if the same quote was fetched
-        if (data[0].q !== lastQuote) {
-            lastQuote = data[0].q;
-            // Update DOM elements
-            document.getElementById("quote-text").innerText = data[0].q;
-            document.getElementById("quote-author").innerText = `— ${data[0].a}`;
-        } else {
-            // If the same quote comes, fetch again
-            getQuote();
-        }
+
+        // Update DOM elements
+        document.getElementById("quote-text").innerText = data[0].quote;
+        document.getElementById("quote-author").innerText = `— ${data[0].author}`;
 
     } catch (error) {
         document.getElementById("quote-text").innerText = "Could not fetch quote. Here's one: 'Never give up!'";
         console.error('Quote fetch error:', error);
     }
 }
-
-// Example call to getQuote on page load or a button click
-document.addEventListener('DOMContentLoaded', (event) => {
-    getQuote();
-});
 
 // Update the current time and timezone every second
 function updateTime() {

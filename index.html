@@ -3,14 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Fortune Teller</title>
+    <title>Daily Motivational Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet"> <!-- Modern Font -->
 </head>
 <body>
-    <h1>🔮 Digital Fortune Teller 🔮</h1>
-    <div class="fortune-box">
-        <p id="fortune-text">Click the button to reveal your fortune...</p>
-        <button class="fortune-button" onclick="tellFortune()">Reveal Fortune</button>
+    <div class="container">
+        <h1>Daily Motivation</h1> 
+        <div id="weather">
+            <h2>Weather Update</h2>
+            <p id="location"></p>
+            <p id="weather-info">Loading...</p>
+        </div>
+        <div id="quote">
+            <h2>Daily Advice</h2>
+            <p id="quote-text">Loading...</p>
+            <p id="quote-author"></p>
+            <button onclick="getAdvice()">Get New Advice</button>
+        </div>
+        <div id="loading" class="loader" style="display: none;">Loading...</div>
     </div>
     <script src="script.js"></script>
 </body>

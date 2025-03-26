@@ -1,0 +1,186 @@
+body {
+    font-family: 'Montserrat', sans-serif; /* Modern font */
+    text-align: center;
+    background: linear-gradient(270deg, #ffb3ba, #ffdfba, #ffffba, #baffc9, #bae1ff); /* Pastel colors */
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite; /* Animation for the gradient */
+    margin: 0;
+    padding: 20px;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+
+.container {
+    max-width: 900px; /* Container width */
+    margin: auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 28px; /* Increase title size */
+}
+
+#weather {
+    background: #ffe0b2; /* Light background */
+    border-radius: 8px;
+    border-left: 6px solid #ff9800;
+    text-align: left;
+    padding: 20px; /* Add more padding for spaciousness */
+}
+
+#weather h2 {
+    font-size: 26px; /* Slightly larger heading */
+    color: #333;
+    margin: 0; /* Remove margin for a tighter layout */
+}
+
+#location {
+    font-size: 24px; /* Increase font size for visibility */
+    font-weight: 600; /* Use a bolder font weight */
+    color: #1a237e; /* Change color to a darker shade for better contrast */
+    margin: 10px 0; /* Add some margin for spacing */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Add a subtle text shadow */
+}
+
+.forecast-container {
+    display: flex; /* Use flexbox to arrange items in a row */
+    justify-content: space-between; /* Distribute space between items */
+    margin-top: 15px; /* Add space above the forecast cards */
+}
+
+.forecast-card {
+    flex: 0 1 500px; /* Set a base width for each card */
+    margin: 0 5px; /* Reduce horizontal spacing between cards */
+    padding: 15px; /* Add padding inside each card */
+    background: linear-gradient(to bottom right, #ffffff, #f9f9f9); /* Soft gradient */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    text-align: center; /* Center the text inside the cards */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Add transition effects */
+}
+
+.forecast-card:hover {
+    transform: translateY(-3px); /* Lift effect on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.forecast-card p {
+    margin: 5px 0; /* Add margin for spacing between text elements */
+}
+
+.forecast-card p:first-child {
+    font-size: 18px; /* Larger font for date */
+    font-weight: bold; /* Bold for emphasis */
+}
+
+.forecast-card p:nth-child(2) {
+    font-size: 24px; /* Larger font for temperature */
+    color: navy; /* Temperature color */
+    font-weight: 700; /* Bold for emphasis */
+}
+
+.forecast-card p:nth-child(3) {
+    font-size: 16px; /* Smaller font for description */
+    color: #555; /* Light description color */
+}
+
+/* Existing styles for weather info */
+#weather-info {
+    font-size: 22px; /* Increase font size for visibility */
+    font-weight: 500; /* Use medium weight */
+    color: #e65100;
+    line-height: 1.5;
+}
+
+#quote {
+    background: #dcedc8; /* Lighter green */
+    border-radius: 8px;
+    border-left: 6px solid #4caf50;
+    text-align: left;
+    padding: 20px; /* Add more padding for spaciousness */
+    margin-top: 20px; /* Add top margin for separation */
+}
+
+#quote-text {
+    font-size: 28px; /* Increase font size for quotes */
+    font-weight: 700; /* Use bold weight */
+    color: #2e7d32;
+    margin: 10px 0;
+    line-height: 1.5;
+    font-style: italic;
+}
+
+#quote-author {
+    font-size: 20px; /* Slightly larger author font size */
+    color: #555;
+    margin-top: 5px;
+    text-align: right;
+}
+
+h2 {
+    color: #555;
+}
+
+p {
+    color: #666;
+    line-height: 1.5;
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+    transform: scale(1.05); /* Scale effect on hover */
+}
+
+button:focus {
+    outline: none; /* Remove focus outline */
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px; /* Adjust padding for smaller screens */
+    }
+    
+    h1 {
+        font-size: 24px; /* Adjust title size for smaller screens */
+    }
+
+    #weather h2, #quote h2 {
+        font-size: 22px; /* Adjust heading sizes */
+    }
+
+    #weather-info, #quote-text {
+        font-size: 18px; /* Adjust font size for better readability */
+    }
+
+    button {
+        font-size: 16px; /* Adjust button size for smaller screens */
+    }
+}

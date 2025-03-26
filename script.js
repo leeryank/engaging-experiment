@@ -53,64 +53,99 @@ function fetchWeather(lat, lon) {
 
             // Display the location
             const locationElement = document.getElementById("location");
-            const cityName = data.city.name; // Get the city name from the response
-            const countryCode = data.city.country; // Get the country code from the response
-            locationElement.innerText = `${cityName}, ${countryCode}`; // Set location text
+            const cityName = data.city.name;
+            const countryCode = data.city.country;
+            locationElement.innerText = `${cityName}, ${countryCode}`;
+
+            // Group forecasts by day
+            const forecastsByDay = {};
+            data.list.forEach(forecast => {
+                const date = new Date(forecast.dt * 1000);
+                const dateString = date.toLocaleDateString();
+                
+                if (!forecastsByDay[dateString]) {
+                    forecastsByDay[dateString] = [];
+                }
+                forecastsByDay[dateString].push(forecast);
+            });
 
             // Create a wrapper for the forecast cards
             const forecastWrapper = document.createElement("div");
-            forecastWrapper.classList.add("forecast-container"); // Add the flex container class
+            forecastWrapper.classList.add("forecast-container");
 
-            // Create forecast cards for the next 3 days
-            for (let i = 0; i < 3; i++) {
-                const forecast = data.list[i * 8]; // Get the forecast for every 8th entry (every 24 hours)
-                const temp = Math.round(forecast.main.temp);
-                const highTemp = Math.round(forecast.main.temp_max); // Get high temperature
-                const lowTemp = Math.round(forecast.main.temp_min); // Get low temperature
-                const description = forecast.weather[0].description;
-                const date = new Date(forecast.dt * 1000);
+            // Get the first 3 days
+            const days = Object.keys(forecastsByDay).slice(0, 3);
+
+            days.forEach((dateString, index) => {
+                const dayForecasts = forecastsByDay[dateString];
+                
+                // Find max and min temperatures for the day
+                let highTemp = -Infinity;
+                let lowTemp = Infinity;
+                let description = dayForecasts[0].weather[0].description; // Default to first forecast's description
+                
+                dayForecasts.forEach(forecast => {
+                    highTemp = Math.max(highTemp, forecast.main.temp_max);
+                    lowTemp = Math.min(lowTemp, forecast.main.temp_min);
+                    
+                    // Use the description from midday forecast if available
+                    const hours = new Date(forecast.dt * 1000).getHours();
+                    if (hours >= 10 && hours <= 14) {
+                        description = forecast.weather[0].description;
+                    }
+                });
+            
+                // If we didn't get a midday description, use the most common description of the day
+                if (!description) {
+                    const descCounts = {};
+                    dayForecasts.forEach(forecast => {
+                        const desc = forecast.weather[0].description;
+                        descCounts[desc] = (descCounts[desc] || 0) + 1;
+                    });
+                    description = Object.keys(descCounts).reduce((a, b) => 
+                        descCounts[a] > descCounts[b] ? a : b
+                    );
+                }
+            
+                // Capitalize first letter of description
+                description = description.charAt(0).toUpperCase() + description.slice(1);
+                
+            
+                highTemp = Math.round(highTemp);
+                lowTemp = Math.round(lowTemp);
+                
+                // Get average temp for emoji selection
+                const avgTemp = (highTemp + lowTemp) / 2;
+                
+                // Get date info
+                const date = new Date(dayForecasts[0].dt * 1000);
                 const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
                 const formattedDate = date.toLocaleDateString(undefined, options);
-
-                // Determine if the date is today or tomorrow
+            
+                // Determine if it's today
                 const today = new Date();
-                today.setHours(0, 0, 0, 0); // Set to the start of today
-                const isToday = date.toDateString() === today.toDateString(); // Check if it's today
-
-                // Get the appropriate emoji for the temperature and description
-                const weatherEmoji = getWeatherEmoji(temp, description);
-
-                // Create a new forecast card
-                // Create a new forecast card
+                today.setHours(0, 0, 0, 0);
+                const isToday = date.toDateString() === today.toDateString();
+            
+                // Get weather emoji
+                const weatherEmoji = getWeatherEmoji(avgTemp, description);
+            
+                // Create forecast card
                 const card = document.createElement("div");
                 card.classList.add("forecast-card");
-
-                // Add a special class for today's card
-                if (isToday) {
-                    card.classList.add("today-card");
-                    // Set inner HTML for today card with explicit "Today" text
-                    card.innerHTML = `
-                    <p>${formattedDate} (Today)</p>
+                if (isToday) card.classList.add("today-card");
+            
+                card.innerHTML = `
+                    <p>${formattedDate}${isToday ? ' (Today)' : ''}</p>
                     <p>${weatherEmoji}</p>
                     <p>High: ${highTemp}°F</p>
                     <p>Low: ${lowTemp}°F</p>
                     <p>${description}</p>
-                    `;
-                } else {
-                    card.innerHTML = `
-                        <p>${formattedDate}</p>
-                        <p>${weatherEmoji}</p>
-                        <p>High: ${highTemp}°F</p>
-                        <p>Low: ${lowTemp}°F</p>
-                        <p>${description}</p>
-                    `;
-                }
-
-                // Append the card to the forecast wrapper
+                `;
+            
                 forecastWrapper.appendChild(card);
-            }
+            });
 
-            // Append the forecast wrapper to the forecast container
             forecastContainer.appendChild(forecastWrapper);
         })
         .catch(error => {

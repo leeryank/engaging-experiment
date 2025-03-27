@@ -22,3 +22,7 @@ The **Daily Dashboard** is a web application that provides users with a personal
 Weather data is fetched from the OpenWeatherMap API. I signed up for an API key and used it in the script.js file.
 
 Quotes are fetched from the API Ninjas quotes API. I also signed up for an API key and used it in the script.js file.
+
+## Live Site
+
+Check out the live version of the project here: [Daily Dashboard](<https://leeryank.github.io/engaging-experiment/>)

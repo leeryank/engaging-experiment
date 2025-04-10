@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="container">
@@ -20,7 +21,24 @@
         <div id="weather">
             <h2>Weather Update</h2>
             <p id="location"></p>
-            <p id="weather-info">Loading...</p>
+            <div class="weather-chart-container">
+                <div class="current-weather">
+                    <div class="weather-content">
+                        <div id="weather-icon">⛅</div>
+                        <div id="current-temp">--°F</div>
+                        <div id="weather-description">Loading...</div>
+                        <div class="weather-details">
+                            <div><span style="font-weight: bold;">Humidity:</span> <span id="humidity">--%</span></div>
+                            <div><span style="font-weight: bold;">Wind:</span> <span id="wind-speed">-- mph</span></div>
+                            <div><span style="font-weight: bold;">Feels Like:</span> <span id="feels-like">--°F</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="temperatureChart"></canvas>
+                </div>
+            </div>
+            <div id="weather-info">Loading...</div>
         </div>
         <div id="quote">
             <h2 class="quote-heading">Daily Quote</h2>

@@ -40,12 +40,20 @@ function fetchWeather(lat, lon) {
                 throw new Error("No forecast data available.");
             }
 
-            // Clear previous content and display location
-            const forecastContainer = document.getElementById("weather-info");
-            forecastContainer.innerHTML = '';
+            // Update current weather display
+            updateCurrentWeather(data);
+            
+            // Display location
             document.getElementById("location").innerText = 
                 `${data.city.name}, ${data.city.country}`;
 
+            // Create chart with points
+            createTemperatureChart(data.list);
+
+            // 3-day forecast card creation
+            const forecastContainer = document.getElementById("weather-info");
+            forecastContainer.innerHTML = '';
+            
             // Group forecasts by day
             const forecastsByDay = {};
             data.list.forEach(forecast => {
@@ -101,6 +109,144 @@ function fetchWeather(lat, lon) {
             console.error("Error fetching weather:", error);
             document.getElementById("weather-info").innerText = "Could not fetch weather data.";
         });
+}
+
+// Helper function to update current weather display
+function updateCurrentWeather(data) {
+    const current = data.list[0];
+    const icon = getWeatherEmoji(current.main.temp, current.weather[0].description);
+    
+    document.getElementById('weather-icon').textContent = icon;
+    document.getElementById('current-temp').textContent = `${Math.round(current.main.temp)}°F`;
+    document.getElementById('weather-description').textContent = 
+        current.weather[0].description.charAt(0).toUpperCase() + 
+        current.weather[0].description.slice(1);
+    document.getElementById('humidity').textContent = `${current.main.humidity}%`;
+    document.getElementById('wind-speed').textContent = `${Math.round(current.wind.speed)} mph`;
+    document.getElementById('feels-like').textContent = `${Math.round(current.main.feels_like)}°F`;
+}
+
+// Create temperature trend chart
+function createTemperatureChart(forecasts) {
+    // Group forecasts by local date
+    const forecastsByDate = {};
+    forecasts.forEach(forecast => {
+        const date = new Date(forecast.dt * 1000);
+        const dateString = date.toLocaleDateString();
+        if (!forecastsByDate[dateString]) {
+            forecastsByDate[dateString] = [];
+        }
+        forecastsByDate[dateString].push(forecast);
+    });
+
+    // Get today's forecasts (or first available day if today has no data)
+    const todayString = new Date().toLocaleDateString();
+    const todayForecasts = forecastsByDate[todayString] || Object.values(forecastsByDate)[0] || [];
+    
+    // Prepare data arrays
+    const labels = [];
+    const temps = [];
+    const feelsLike = [];
+    const windSpeeds = [];
+
+    todayForecasts.forEach(forecast => {
+        const time = new Date(forecast.dt * 1000);
+        labels.push(time.toLocaleTimeString([], { hour: '2-digit', hour12: true }));
+        temps.push(Math.round(forecast.main.temp));
+        feelsLike.push(Math.round(forecast.main.feels_like));
+        windSpeeds.push(Math.round(forecast.wind.speed));
+    });
+
+    const ctx = document.getElementById('temperatureChart').getContext('2d');
+    
+    if (window.tempChart) {
+        window.tempChart.destroy();
+    }
+    
+    window.tempChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Temp (°F)',
+                    data: temps,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.1)',
+                    borderWidth: 2,
+                    tension: 0.3,
+                    fill: true
+                },
+                {
+                    label: 'Feels Like (°F)',
+                    data: feelsLike,
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.1)',
+                    borderWidth: 2,
+                    tension: 0.3,
+                    fill: false
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#eeeeee',
+                        boxWidth: 12,
+                        font: {
+                            size: 12
+                        }
+                    },
+                    position: 'top'
+                },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false,
+                    displayColors: true,
+                    bodyFont: {
+                        size: 12
+                    },
+                    callbacks: {
+                        afterBody: function(context) {
+                            const index = context[0].dataIndex;
+                            return `Wind: ${windSpeeds[index]} mph`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { 
+                        color: '#eeeeee',
+                        maxRotation: 45,
+                        minRotation: 45
+                    },
+                    grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                },
+                y: {
+                    ticks: { 
+                        color: '#eeeeee',
+                        callback: function(value) { return value + '°F'; }
+                    },
+                    grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                    title: {
+                        display: true,
+                        text: 'Temperature (°F)',
+                        color: '#eeeeee'
+                    }
+                }
+            },
+            elements: {
+                point: {
+                    radius: 3,
+                    hoverRadius: 5
+                }
+            }
+        }
+    });
 }
 
 // Fetch and display random inspirational quote
